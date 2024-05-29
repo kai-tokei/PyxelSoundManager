@@ -5,6 +5,23 @@ MUSIC_FILE = "game-rock"
 SE_SOUND_INDEX = 0  # 効果音のサウンドインデックス
 seChannel = 0
 
+class SoundManager:
+    def __init__(self):
+        self.sounds: map = map()
+        self.tick = None
+        self.se = ""
+        self.bgm = ""
+
+    def load(self, path: str):
+        pass
+
+    def play_bgm(self):
+        pass
+
+    def play_se(self):
+        pass
+
+
 class App:
     def __init__(self):
         pyxel.init(160, 120, title="Pyxel Tracker Player")

@@ -43,27 +43,30 @@ class SoundManager:
     def play_bgm(self, name: str, loop: bool = True):
         """指定された名前のBGMを再生する"""
         if self.tick is None:
-            if self.isExist(name, self.bgms):
+            if self._isExist(name, self.bgms):
                 self.tick = 0
                 self.isLoop = loop
                 for ch, sound in enumerate(self.bgms[name]):
                     pyxel.sound(ch).set(*sound)
                     pyxel.play(ch, ch, loop=loop)
         else:
-            self.tick = self.get_crt_tick()
-            self.back_to_bgm()
+            self.tick = self._get_crt_tick()
+            self._back_to_bgm()
 
     def play_se(self, name: str):
         """指定された名前のSEを再生する"""
-        if self.isExist(name, self.ses):
+        if self._isExist(name, self.ses):
             pyxel.play(self.seChannel, self.ses[name])
+    
+    def stop(self):
+        pyxel.stop()
 
-    def back_to_bgm(self):
+    def _back_to_bgm(self):
         """SE再生後にBGMに戻る"""
         if pyxel.play_pos(self.seChannel) is None:  # SEが鳴り終わったら
             pyxel.play(self.seChannel, [self.seChannel], self.tick, self.isLoop)  # 再びBGMを鳴らす
 
-    def get_crt_tick(self) -> int:
+    def _get_crt_tick(self) -> int:
         """現在の再生位置を取得する"""
         for i in range(4):
             if pyxel.play_pos(i) is not None:
@@ -72,7 +75,7 @@ class SoundManager:
         print("All channels are stopped!", file=sys.stderr)
         return -1
 
-    def isExist(self, name: str, sound_dict: dict) -> bool:
+    def _isExist(self, name: str, sound_dict: dict) -> bool:
         """指定された名前の音声が存在するかチェックする"""
         if name not in sound_dict:
             print(f"Cannot find '{name}'", file=sys.stderr)

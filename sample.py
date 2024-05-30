@@ -1,4 +1,5 @@
 import pyxel
+from sound_manager import *
 
 # サンプルコード
 class App:

@@ -1,6 +1,6 @@
+import json
 import pyxel
 import sys
-import json
 
 class SoundManager:
     def __init__(self):
@@ -19,7 +19,7 @@ class SoundManager:
             with open(f"./sounds/{path}.json", "rt") as fin:
                 self.bgms[name] = json.loads(fin.read())
         except FileNotFoundError:
-            print(f"Error: File '{path}.json' not found", file=sys.stderr)
+            raise FileNotFoundError(f"Error: File '{path}.json' not found")
 
     def load_se(self, path: str, name: str):
         """指定されたパスからSEを読み込み、サウンドバンクにセットする"""
@@ -32,9 +32,9 @@ class SoundManager:
                         pyxel.sound(self.seStack).set(*sound)
                 self.seStack -= 1
             except FileNotFoundError:
-                print(f"Error: File '{path}.json' not found", file=sys.stderr)
+                raise FileNotFoundError(f"Error: File '{path}.json' not found")
         else:
-            print("Error: Sound Bank is overflow!!", file=sys.stderr)
+            raise OverflowError("Error: Sound Bank is overflow!!")
 
     def play_bgm(self, name: str, loop: bool = True):
         """指定された名前のBGMを再生する"""
@@ -53,8 +53,9 @@ class SoundManager:
         """指定された名前のSEを再生する"""
         if self._isExist(name, self.ses):
             pyxel.play(self.seChannel, self.ses[name])
-    
+
     def stop(self):
+        """全てのサウンドを停止する"""
         pyxel.stop()
 
     def _back_to_bgm(self):
@@ -68,12 +69,11 @@ class SoundManager:
             if pyxel.play_pos(i) is not None:
                 self.tick = pyxel.play_pos(i)[1]
                 return self.tick
-        print("All channels are stopped!", file=sys.stderr)
-        return -1
+        raise RuntimeError("All channels are stopped!")
 
     def _isExist(self, name: str, sound_dict: dict) -> bool:
         """指定された名前の音声が存在するかチェックする"""
         if name not in sound_dict:
-            print(f"Cannot find '{name}'", file=sys.stderr)
-            return False
+            raise KeyError(f"Cannot find '{name}'")
         return True
+

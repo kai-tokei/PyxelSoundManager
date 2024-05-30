@@ -8,8 +8,8 @@ class App:
         self.sound_manager = SoundManager()
 
         # サウンドの読み込み
-        self.sound_manager.load_bgm("bgm_example", "background")
-        self.sound_manager.load_se("se_example", "effect")
+        self.sound_manager.load_bgm("game-rock", "background")
+        self.sound_manager.load_se("sample_se", "effect")
 
         pyxel.run(self.update, self.draw)
 

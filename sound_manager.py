@@ -11,7 +11,11 @@ class SoundManager:
         self.se = ""  # 現在再生中のSE名
         self.bgm = ""  # 現在再生中のBGM名
         self.isLoop = True  # BGMがループ再生するかどうか
-        self.seChannel = 3  # SEが再生されるチャンネル
+        self.seChannel = 2 # SEが再生されるチャンネル
+
+    def set_seChannel(self, ch: int):
+        """SEを再生するチャンネルを指定"""
+        self.seChannel = ch
 
     def load_bgm(self, path: str, name: str):
         """指定されたパスからBGMを読み込み、辞書に格納する"""
@@ -26,10 +30,11 @@ class SoundManager:
         if self.seStack > 3:
             try:
                 with open(f"./sounds/{path}.json", "rt") as fin:
-                    self.ses[name] = json.loads(fin.read())
-                for ch, sound in enumerate(self.ses[name]):
+                    se = json.loads(fin.read())
+                for ch, sound in enumerate(se):
                     if ch == 0:
                         pyxel.sound(self.seStack).set(*sound)
+                self.ses[name] = self.seStack
                 self.seStack -= 1
             except FileNotFoundError:
                 raise FileNotFoundError(f"Error: File '{path}.json' not found")

@@ -1,6 +1,8 @@
 # SoundManager Class for Pyxel
 
-This `SoundManager` class is designed to manage background music (BGM) and sound effects (SE) in a Pyxel game. It allows loading, playing, and stopping sounds, with support for interrupting BGMs with SEs. The class is intended to work with JSON files created using the PyxelTracker music creation software.
+The SoundManager class is designed to manage background music (BGM) and sound effects (SE) in a Pyxel game. This class assumes loading JSON files created using the PyxelTracker music creation software. The repository for PyxelTracker can be found here.
+
+https://github.com/shiromofufactory/pyxel-tracker
 
 ## Features
 
@@ -171,7 +173,9 @@ This project is licensed under the MIT License. See the LICENSE file for more de
 
 # Pyxel用 SoundManager クラス
 
-この`SoundManager`クラスは、Pyxelゲームでの背景音楽（BGM）と効果音（SE）を管理するためのものです。サウンドの読み込み、再生、停止を行い、SEによるBGMの割り込みもサポートしています。このクラスは、PyxelTracker音楽制作ソフトを用いて作成されたJSONファイルと互換性があります。
+SoundManagerクラスは、Pyxelゲームでの背景音楽（BGM）と効果音（SE）を管理するためのものです。このクラスは、PyxelTracker音楽制作ソフトを用いて作成されたJSONファイルを読み込むことを前提としています。PyxelTrackerのリポジトリはこちらにあります。
+
+https://github.com/shiromofufactory/pyxel-tracker
 
 ## 特徴
 

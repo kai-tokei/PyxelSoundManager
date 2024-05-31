@@ -41,6 +41,10 @@ class SoundManager:
         else:
             raise OverflowError("Error: Sound Bank is overflow!!")
 
+    def set_se(self, name: str, snd_num: int):
+        """登録されているsnd_numを登録"""
+        self.ses[name] = snd_num
+
     def play_bgm(self, name: str, loop: bool = True):
         """指定された名前のBGMを再生する"""
         if self.tick is None:

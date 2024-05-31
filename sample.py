@@ -5,11 +5,11 @@ class App:
     def __init__(self):
         pyxel.init(160, 120, title="Sound Manager Example")
         self.sound_manager = SoundManager()
-        
+
         # BGMとSEの読み込み
         self.sound_manager.load_bgm('sample_bgm', 'bgm1')
         self.sound_manager.load_se('sample_se', 'se1')
-        
+
         # BGMを再生
         self.sound_manager.play_bgm('bgm1')
 

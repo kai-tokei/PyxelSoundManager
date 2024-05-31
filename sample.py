@@ -3,6 +3,7 @@ from sound_manager import SoundManager
 
 class App:
     def __init__(self):
+        # 初期化
         pyxel.init(160, 120, title="Sound Manager Example")
         self.sound_manager = SoundManager()
 

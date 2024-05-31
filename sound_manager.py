@@ -42,7 +42,7 @@ class SoundManager:
             raise OverflowError("Error: Sound Bank is overflow!!")
 
     def set_se(self, name: str, snd_num: int):
-        """登録されているsnd_numを登録"""
+        """pyxresのsnd_numを登録"""
         self.ses[name] = snd_num
 
     def play_bgm(self, name: str, loop: bool = True):
